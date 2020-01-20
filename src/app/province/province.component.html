@@ -1,0 +1,9 @@
+<div>
+  <select (change)="onSelect($event)">
+    <option
+      *ngFor="let province of provinces"
+      [value]="province.key">
+        {{ province.value }}
+    </option>
+  </select>
+</div>

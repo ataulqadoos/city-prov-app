@@ -1,0 +1,4 @@
+<div>
+  <app-province (provinceSelectedEvent)="onProvinceChanged($event)"></app-province>
+  <app-city [province]="this.selectedProvince"></app-city>
+</div>

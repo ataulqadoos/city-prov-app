@@ -1,0 +1,8 @@
+<div>
+  <select>
+    <option
+      *ngFor="let city of currentCityList"
+      [value]="city.cityCode"
+    >{{ city.cityName }}</option>
+  </select>
+</div>
