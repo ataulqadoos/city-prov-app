@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ProvinceService} from '../province.service';
 
 @Component({
   selector: 'app-city',
@@ -7,35 +8,41 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CityComponent implements OnInit {
 
-  cities: {province:string, cities: {cityCode: string, cityName: string}[]}[] = [
+  cities: {province: string, cities: {cityCode: string, cityName: string}[]}[] = [
     {
-      province: "on",
-      cities: [{cityCode: "tor", cityName: "Toronto"}, {cityCode: "bram", cityName: "Brampton"}]
+      province: 'on',
+      cities: [{cityCode: 'tor', cityName: 'Toronto'}, {cityCode: 'bram', cityName: 'Brampton'}]
     },
     {
-      province: "qc",
-      cities: [{cityCode: "mont", cityName: "Montreal"}, {cityCode: "qbc", cityName: "Quebec City"}]
+      province: 'qc',
+      cities: [{cityCode: 'mont', cityName: 'Montreal'}, {cityCode: 'qbc', cityName: 'Quebec City'}]
     },
     {
-      province: "ab",
-      cities: [{cityCode: "cal", cityName: "Calgary"}, {cityCode: "edm", cityName: "Edmonton"}]
+      province: 'ab',
+      cities: [{cityCode: 'cal', cityName: 'Calgary'}, {cityCode: 'edm', cityName: 'Edmonton'}]
     }
   ];
 
+  datasource: {cityCode: string, cityName: string}[];
+
   currentCityList: {cityCode: string, cityName: string}[] = [];
 
-  @Input() set province(prov: string) {
+  setProvince(prov: string) {
     const citiesByProv = this.cities.find((data) => data.province === prov);
     if (citiesByProv) {
       this.currentCityList = citiesByProv.cities;
+      this.datasource = citiesByProv.cities;
     } else {
       this.currentCityList = this.cities.find((data) => data.province === 'on').cities;
     }
   }
 
-  constructor() { }
+  constructor(private provinceService: ProvinceService) { }
 
   ngOnInit() {
+    this.provinceService.provinceSelectedObservable.subscribe(data => {
+      this.setProvince(data);
+    });
   }
 
 }

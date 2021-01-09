@@ -6,3 +6,22 @@
     >{{ city.cityName }}</option>
   </select>
 </div>
+<div>
+  <mat-table [dataSource]="datasource">
+    <!-- User name Definition -->
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef> City Code </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cityCode}} </mat-cell>
+    </ng-container>
+
+    <!-- Age Definition -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> City Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cityName}} </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="['code', 'name']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['code', 'name']"></mat-row>
+  </mat-table>
+</div>

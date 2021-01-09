@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ProvinceService} from '../province.service';
 
 @Component({
   selector: 'app-province',
@@ -9,21 +10,19 @@ export class ProvinceComponent implements OnInit {
 
   provinces: {key: string, value: string}[] =
     [
-      {key: "", value: ""},
-      {key: "on", value: "Ontario"},
-      {key: "qc", value: "Quebec"},
-      {key: "ab", value: "Alberta"}
+      {key: '', value: ''},
+      {key: 'on', value: 'Ontario'},
+      {key: 'qc', value: 'Quebec'},
+      {key: 'ab', value: 'Alberta'}
     ];
 
-  @Output() provinceSelectedEvent = new EventEmitter<string>();
-
-  constructor() { }
+  constructor(private provinceService: ProvinceService) { }
 
   ngOnInit() {
   }
 
-  onSelect(event: any) {
-    this.provinceSelectedEvent.emit(event.target.value);
+  onSelect(province) {
+    this.provinceService.provinceSelected(province);
   }
 
 }

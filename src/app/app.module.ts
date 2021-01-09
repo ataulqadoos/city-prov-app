@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ProvinceComponent } from './province/province.component';
 import { CityComponent } from './city/city.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { CityComponent } from './city/city.component';
     CityComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatTableModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

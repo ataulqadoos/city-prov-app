@@ -1,5 +1,5 @@
 <div>
-  <select (change)="onSelect($event)">
+  <select (change)="onSelect($event.target.value)">
     <option
       *ngFor="let province of provinces"
       [value]="province.key">
